@@ -78,14 +78,14 @@ function App() {
 
     try {
       const fee = ethers.utils.parseEther(mintFee || "0.01");
-      setStatus("🚀 Đang gửi giao dịch mint...");
+      setStatus("Đang gửi giao dịch mint...");
 
       const tx = await nftContract.safeMint(walletAddress, metadataURI, {
         value: fee,
       });
 
       setTxHash(tx.hash);
-      setStatus("⏳ Đang chờ xác nhận giao dịch...");
+      setStatus("Đang chờ xác nhận giao dịch...");
       await tx.wait();
 
       Swal.fire({
@@ -95,7 +95,7 @@ function App() {
         confirmButtonColor: "#4f46e5",
       });
 
-      setStatus("✅ Mint thành công!");
+      setStatus("Mint thành công!");
       await loadMyCollection();
     } catch (error) {
       console.error(error);
@@ -105,7 +105,7 @@ function App() {
         text: error?.message || "Có lỗi xảy ra khi gửi giao dịch.",
         confirmButtonColor: "#4f46e5",
       });
-      setStatus("❌ Mint thất bại: " + (error?.message || error));
+      setStatus("Mint thất bại: " + (error?.message || error));
     }
   }
 
